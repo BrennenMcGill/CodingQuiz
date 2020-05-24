@@ -3,19 +3,29 @@ var bodyEl = document.getElementById("main");
 var waitingForAnswer = false;
 var questionArray = [
     {
-        q : "Commonly used data types DO NOT include:"
+        q : "Commonly used data types DO NOT include:",
+        a : ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"],
+        c : 2
     },
     {
-        q : "The condition in an if / else statement is enclosed with ________."
+        q : "The condition in an if / else statement is enclosed with ________.",
+        a : ["1. Quotes", "2. Curly Brackets", "3. Parenthesis", "4. Square Brackets"],
+        c : 2
     },
     {
-        q : ""
+        q : "Arrays in JavaScript can be used  to store _________.",
+        a : ["1. Numbers and Stings", "2. Other Arrays", "3. Booleans", "4. All Of The Above"],
+        c : 3
     },
     {
-        q : ""
+        q : "Sting values must be enclosed within ______ when being assigned to variables.",
+        a : ["1. Commas", "2. Curly Brackets", "3. Quotes", "4. Parenthesis"],
+        c : 2
     },
     {
-        q : ""
+        q : "A very useful tool used during development and debugging for printing content to the debugger is:",
+        a : ["1. JavaScript", "2. Terminal/Bash", "3. For Loops", "4. Console.log"],
+        c : 3
     }
 ];
 
@@ -66,22 +76,30 @@ var displayBeginning = function() {
 //startGame function
 var startGame = function() {
     timer();
-    for (var i=0; i < questionArray.length; i++) {
-        
-    }
-}
     // for loop that runs through question[object]
+    for (var i=0; i < questionArray.length; i++) {
         // call displayNewQuestion(question array[i])
+        displayNewQuestion(questionArray[i]);
         // set waitingFor Answer to be true
+        waitingForAnswer = true;
         // wait for waitingForAnswer to become false in while loop
+        while (waitingForAnswer) {
+
+        }
+    }
     // when for loop is done call endGame()
+    endGame();
+}
 
 //displayNewQuestion function
+var displayNewQuestion = function() {
     // inputs = question object
     // generate question
     // generate ul for answers
     // generate li elements
-    // make all li elements clickabel and call chooseanser(question object, answer index)
+    // make all li elements clickable and call chooseanser(question object, answer index)
+
+}
 
 //displayAfterAnswer function
     // input = correct
