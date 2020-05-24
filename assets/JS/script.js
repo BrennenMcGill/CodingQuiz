@@ -2,8 +2,22 @@ var timerEl = document.getElementById("timer");
 var bodyEl = document.getElementById("main");
 var waitingForAnswer = false;
 var questionArray = [
-    
-]
+    {
+        q : "Commonly used data types DO NOT include:"
+    },
+    {
+        q : "The condition in an if / else statement is enclosed with ________."
+    },
+    {
+        q : ""
+    },
+    {
+        q : ""
+    },
+    {
+        q : ""
+    }
+];
 
 //startTimer function
 
@@ -52,10 +66,13 @@ var displayBeginning = function() {
 //startGame function
 var startGame = function() {
     timer();
+    for (var i=0; i < questionArray.length; i++) {
+        
+    }
 }
-    // calls startTimer()
     // for loop that runs through question[object]
         // call displayNewQuestion(question array[i])
+        // set waitingFor Answer to be true
         // wait for waitingForAnswer to become false in while loop
     // when for loop is done call endGame()
 
