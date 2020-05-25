@@ -1,6 +1,7 @@
 var timerEl = document.getElementById("timer");
 var bodyEl = document.getElementById("main");
-var waitingForAnswer = false;   
+var waitingForAnswer = false;
+var highScoresButtonEl = document.getElementById("score");   
 var questionArray = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -70,7 +71,7 @@ var displayBeginning = function() {
 
     var startQuizEl = document.createElement("button");
     startQuizEl.textContent = "start quiz";
-    startQuizEl.className = "button";
+    startQuizEl.className = "submit-button";
 
     startQuizEl.addEventListener("click", startGame);
     bodyEl.appendChild(startQuizEl);
@@ -177,7 +178,7 @@ var displayHighScoreEntry = function() {
 
     formContainerEl.appendChild(enterInitialEl);
 
-    var formInputEl = document.createElement("INPUT");
+    var formInputEl = document.createElement("input");
     formInputEl.setAttribute("placeholder", "Intials");
     formInputEl.className = "form-input";
 
@@ -187,19 +188,71 @@ var displayHighScoreEntry = function() {
     submitButtonEl.textContent = "Submit";
     submitButtonEl.className = "submit-button";
 
-    submitButtonEl.addEventListener("click", displayBeginning);
+    submitButtonEl.addEventListener("click", function(event) {
+        event.preventDefault(); 
+        displayHighScoreSubmit(formInputEl.value, timeLeft);
+    });
     formContainerEl.appendChild(submitButtonEl);
     
 }
-    // displays all done element
-    // displays your final score = time left
-    // displays form for initial with submit button
-    // submit form calls highScoreSubmit(initals + timer)
 
-//displayHighScoreList function
+var displayHighScoreSubmit = function(initials, score) {
+    if (!localStorage.getItem("scores")) {
+        var highScoreArray = [];
+        highScoreArray.push({initials: initials, score: score});
+        // keeps the value of the players initials and score to local
+        localStorage.setItem("scores", JSON.stringify(highScoreArray));
+    }
+    else {
+        var highScoreArray = JSON.parse(localStorage.getItem("scores"));
+        highScoreArray.push({initials: initials, score: score});
+        // keeps the value of the players initials and score to local
+        localStorage.setItem("scores", JSON.stringify(highScoreArray));
+    }
+
+    displayHighScoreList(localStorage.getItem("scores"));
+}
+
+var displayHighScoreList = function(highScoreObj){
+    bodyEl.innerHTML = "";
     // generate high score  element
-    // get list from local.storage
-    // generate element for each list
+    var yourHighScores = document.createElement("h1");
+    yourHighScores.className = "question"
+    yourHighScores.textContent = "High Score List"
+
+    bodyEl.appendChild(yourHighScores);
+
+    var highScoreList = document.createElement("ul");
+
+    bodyEl.appendChild(highScoreList);
+    var highScoreArray = JSON.parse(localStorage.getItem("scores"));
+    for (var i = 0; i < highScoreArray.length; i++) {
+        var highScoreListItem = document.createElement("li");
+        highScoreListItem.textContent = highScoreArray[i].initials + "-" + highScoreArray[i].score;
+        highScoreListItem.className = "high-score-list";
+
+        highScoreList.appendChild(highScoreListItem);
+    }
+
+    var highScoreButtons = document.createElement("div");
+    highScoreButtons.className = "high-score-div"
+    bodyEl.appendChild(highScoreButtons);
+
+    var backButton = document.createElement("button");
+    backButton.textContent = "GO BACK";
+    backButton.className = "submit-button";
+
+    backButton.addEventListener("click", displayBeginning);
+    highScoreButtons.appendChild(backButton);
+
+    var clearButton = document.createElement("button");
+    clearButton.textContent = "Clear";
+    clearButton.className = "submit-button";
+
+    clearButton.addEventListener("click", clearHighScores);
+    highScoreButtons.appendChild(clearButton);
+}
+
     // generate button to startGame()
     // generate button to clear high scores and call clearHighScores()
     
@@ -223,14 +276,12 @@ var chooseAnswer = function(questionObj, i) {
 }
 }
 
-//highScoreSubmit function
-    // inputs(initial + timers)
-    // set local.storage form inputs
-    // calls displayHighScorelist()
-
-//clearHighScores function
+var clearHighScores = function(event){
+    event.preventDefault();
+    localStorage.clear("scores");
+}
     // prompt "are you sure?"
     // clear local.storage if prompt is true and alert "scores cleared"
 
-
+highScoresButtonEl.addEventListener("click", displayHighScoreList);
 displayBeginning();

@@ -41,12 +41,13 @@ header p {
 
 .button {
     padding:5px;
-    margin: 0 auto;
+    margin: 10px auto;
     background-color: rgb(83, 175, 170);
     border: 1px solid black;
     color: white;
     border-radius: 12px;
     display: block;
+    width: 40%;
 }
 
 .submit-button {
@@ -57,10 +58,14 @@ header p {
     color: white;
     border-radius: 7px;
     display: block;
+    margin: 0 auto;
 }
 
 .high-score-list {
-    background-color: rgba(128, 0, 128, .2);
+    background-color: rgba(37, 37, 37, 0.5);
+    color: white;
+    padding: 5px;
+    margin: 5px;
 }
 
 .main {
@@ -85,4 +90,9 @@ header p {
 .after-answer {
     color: lightgrey;
     border-top: 2px solid lightgrey;
+}
+
+.high-score-div {
+    margin-left: 40px;
+    display: flex;
 }
