@@ -6,6 +6,9 @@ This is a website that has a basic coding quiz for you to take! Log your score a
 * CSS
 * JavaScript
 
+## Link to site
+[link](https://brennenmcgill.github.io/CodingQuiz/)
+
 ## Images of site
 ![image 1](https://raw.githubusercontent.com/BrennenMcGill/CodingQuiz/master/assets/Images/site.1.PNG)
 ![image 2](https://raw.githubusercontent.com/BrennenMcGill/CodingQuiz/master/assets/Images/site.2.PNG)
